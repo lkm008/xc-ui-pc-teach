@@ -38,6 +38,18 @@ export const addTeachplan = teachplah => {
   return http.requestPost(apiUrl+'/course/teachplan/add',teachplah)
 }
 //##################################################################################
+//获取课程营销信息
+export const getCourseMarketById = id => {
+  return http.requestQuickGet(apiUrl+'/course/coursemarket/get/'+id)
+}
+// 更新课程营销信息
+export const updateCourseMarket =(id,courseMarket) => {
+  return http.requestPost(apiUrl+'/course/coursemarket/update/'+id,courseMarket)
+}
+
+//##################################################################################
+
+
 //保存课程图片地址到课程数据 库
 export const addCoursePic= (courseId,pic) => {
   return http.requestPost(apiUrl+'/course/coursepic/add?courseId='+courseId+"&pic="+pic)
@@ -51,6 +63,7 @@ export const findCoursePicList = courseId => {
 export const deleteCoursePic= courseId => {
   return http.requestDelete(apiUrl+'/course/coursepic/delete?courseId='+courseId)
 }
+//###########################################################################3
 /*预览课程*/
 export const preview = id => {
   return http.requestPost(apiUrl+'/course/preview/'+id);

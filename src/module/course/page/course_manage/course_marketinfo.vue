@@ -70,18 +70,21 @@
         this.$refs.courseMarketForm.validate((valid) => {
           if (valid) {
             this.$confirm('确认提交吗？', '提示', {}).then(() => {
+              //###############################################################################
               courseApi.updateCourseMarket(this.courseid,this.courseMarketForm).then((res) => {
                this.editLoading = false;
                if(res.success){
                  this.$message.success('提交成功');
-                 if(this.dotype == '1'){
+                /* if(this.dotype == '1'){
                    //跳转到课程图片
                    this.$router.push({ path: '/course/add/plan/3/1/'+this.courseid})
-                 }
+                 }*/
                }else{
-                 this.$message.error('提交失败');
+                 // this.$message.error('提交失败');
+                 this.$message.error(res.message);
                }
                });
+              //#############################################################################################
             });
           }
         });
