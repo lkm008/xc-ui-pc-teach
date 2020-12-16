@@ -5,20 +5,30 @@ let apiUrl = sysConfig.xcApiUrlPre;
 
 //查询课程列表
 //我的课程列表
+//#############################################################################
 export const findCourseList = (page,size,params) => {
 //使用工具类将json对象转成key/value
   let queries = querystring.stringify(params)
   return http.requestQuickGet(apiUrl+"/course/coursebase/list/"+page+"/"+size+"?"+queries)
 }
-
-//查询课程分类
-export const category_findlist= () => {
-  return http.requestQuickGet(apiUrl+'/category/list')
-}
 /*添加课程基础信息*/
 export const addCourseBase = params => {
   return http.requestPost(apiUrl+'/course/coursebase/add',params)
 }
+//获取课程基本信息
+export const getCoursebaseById = id => {
+  return http.requestQuickGet(apiUrl+'/course/coursebase/get/'+id)
+}
+//更新课程基本信息
+export const updateCoursebase= (id,course) => {
+  return http.requestPut(apiUrl+'/course/coursebase/update/'+id,course)
+}
+//##############################################################################
+//查询课程分类
+export const category_findlist= () => {
+  return http.requestQuickGet(apiUrl+'/category/list')
+}
+//#################################################################################
 /*查询课程计划*/
 export const findTeachplanList = courseid => {
   return http.requestQuickGet(apiUrl+'/course/teachplan/list/'+courseid)
@@ -27,7 +37,7 @@ export const findTeachplanList = courseid => {
 export const addTeachplan = teachplah => {
   return http.requestPost(apiUrl+'/course/teachplan/add',teachplah)
 }
-
+//##################################################################################
 //保存课程图片地址到课程数据 库
 export const addCoursePic= (courseId,pic) => {
   return http.requestPost(apiUrl+'/course/coursepic/add?courseId='+courseId+"&pic="+pic)

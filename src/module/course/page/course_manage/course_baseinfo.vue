@@ -90,6 +90,7 @@
           this.$refs.courseForm.validate((valid) => {
             if (valid) {
               this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                //##################
                 this.editLoading = true;
                 let mt = this.categoryActive[0];
                 let st = this.categoryActive[1];
@@ -111,6 +112,7 @@
                     }
                   }
                 });
+                //##########################################
               });
             }
           });
