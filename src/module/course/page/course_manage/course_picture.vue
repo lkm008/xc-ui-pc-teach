@@ -104,20 +104,28 @@
               }
 
           })
+      },
+      //查询图片
+      list(){
+        courseApi.findCoursePicList(this.courseid).then((res) => {
+          console.log(res)
+          if(res.pic){
+            let name = '图片';
+            let url = this.imgUrl+res.pic;
+            let fileId = res.courseid;
+            //先清空文件列表，再将图片放入文件列表
+            this.fileList = []
+            this.fileList.push({name:name,url:url,fileId:fileId});
+          }
+          console.log(this.fileList);
+        });
       }
     },
     mounted(){
       //课程id
       this.courseid = this.$route.params.courseid;
       //查询课程
-      courseApi.findCoursePicList(this.courseid).then(res=>{
-          if(res && res.pic){
-              let imgUrl = this.imgUrl+res.pic;
-              //将图片地址设置到
-            this.fileList.push({name:'pic',url:imgUrl,fileId:res.pic})
-          }
-
-      })
+      this.list()
       //测试调用promise方法，then中写的成功后的回调方法，
 //      this.testPromise(3).then(res=>{
 //          alert(res)
