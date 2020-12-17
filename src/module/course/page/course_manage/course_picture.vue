@@ -48,7 +48,7 @@
         return new Promise((resolve,rejct)=>{
           courseApi.deleteCoursePic(this.courseid).then(res=>{
             if(res.success){
-
+              this.$message.success('删除成功');
                 //成功
               resolve()
             }else{
