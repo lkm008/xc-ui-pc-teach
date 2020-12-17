@@ -73,10 +73,12 @@
               if(res.success){
                   this.$message.success("上传图片")
               }else{
-                this.$message.error(res.message)
+                // this.$message.error(res.message)
+                this.handleError()
               }
-
           })
+        }else {
+          this.handleError()
         }
 
       },
