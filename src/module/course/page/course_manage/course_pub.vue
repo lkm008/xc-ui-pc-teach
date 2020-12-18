@@ -70,33 +70,44 @@ export default{
       });
     },
     publish(){
-      //课程发布
-      courseApi.publish(this.courseid).then(res=>{
+      this.$confirm('课程发布后将不允许回退，是否继续？', '提示', {}).then(() => {
+        //课程发布
+        courseApi.publish(this.courseid).then(res=>{
           if(res.success){
-              this.$message.success("发布成功，请点击下边的链接查询课程详情页面")
-
+            this.$message.success("发布成功，请点击下边的链接查询课程详情页面")
+            //查询课程信息
+            this.getcourse()
           }else{
             this.$message.error(res.message)
           }
 
+        })
       })
+
     },
-    getCourseView(){
+    //查询课程信息
+    getcourse(){
+      courseApi.getCoursebaseById(this.courseid).then((res) => {
+        console.log(res);
+        this.course = res;
+      });
+    },
+   /* getCourseView(){
       courseApi.findCourseView(this.courseid).then(res=>{
         if(res && res.courseBase){
             //获取课程状态
             this.course.status = res.courseBase.status;
         }
-
       })
-    }
+    }*/
 
   },
   mounted(){
     //课程id
     this.courseid = this.$route.params.courseid;
     //查询课程信息
-    this.getCourseView();
+    // this.getCourseView();
+    this.getcourse()
   }
 
   }
