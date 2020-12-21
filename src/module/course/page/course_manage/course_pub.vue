@@ -73,6 +73,7 @@ export default{
       this.$confirm('课程发布后将不允许回退，是否继续？', '提示', {}).then(() => {
         //课程发布
         courseApi.publish(this.courseid).then(res=>{
+          console.log(res)
           if(res.success){
             this.$message.success("发布成功，请点击下边的链接查询课程详情页面")
             //查询课程信息
